@@ -1,0 +1,16 @@
+# Object files
+*.o
+*.o-*
+
+# Compiled library
+liblib9.a
+
+# Platform-specific object files (already listed in mkfile)
+# These patterns catch all variants
+errstr-*.o
+getuser-*.o
+getwd-*.o
+getcallerpc-*.o
+dirstat-*.o
+sbrk-*.o
+isnan-*.o

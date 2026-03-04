@@ -1,0 +1,56 @@
+LIB9(3)
+
+NAME
+	lib9 - Plan 9 compatibility library for TaijiOS
+
+DESCRIPTION
+	lib9 provides Plan 9 C library functions for TaijiOS, adapted
+	from Inferno OS. It enables programs using Plan 9 conventions
+	to compile and run on modern systems.
+
+FUNCTIONS
+
+	String formatting
+		print, fprint, sprint, snprint, seprint, smprint
+		fmtinstall, dostfmt, dorfmt
+
+	Utility functions
+		cleanname, argv0, exits, sysfatal
+		tokenize, getfields, strdup, strecpy
+
+	Unicode support
+		utflen, utfnlen, utfrrune, utfrune, utfecpy
+		runestrchr, runestrlen, runetype
+		runeseprint, runesmprint, runesnprint
+
+	9P protocol
+		convD2M, convM2D, convM2S, convS2M
+		fcallfmt
+
+	Directory operations
+		dirstat, dirwstat, create
+
+SOURCE
+	Adapted from Inferno OS lib9:
+	https://github.com/inferno-os/inferno-os
+
+BUILD
+
+	mk		build liblib9.a
+	mk install	install to $ROOT/lib
+	mk clean	clean build artifacts
+
+CONFIGURATION
+
+	The mkfile selects platform-specific implementations:
+	POSIX (Linux, BSD, macOS)
+		errstr-posix, getuser-posix, getwd-posix
+
+NOTES
+
+	This library is maintained as part of TaijiOS. The original
+	Inferno version targets multiple operating systems; this version
+	is configured for POSIX systems only.
+
+SEE ALSO
+	marrow(8), kryon-wm(1), plan9port(1)
