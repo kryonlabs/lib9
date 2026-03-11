@@ -1,5 +1,8 @@
 #include "lib9.h"
 #include <pwd.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <string.h>
 
 char*
 getuser(void)

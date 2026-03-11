@@ -13,6 +13,7 @@
  */
 #include "lib9.h"
 #include "fmtdef.h"
+#include <unistd.h>
 
 /*
  * generic routine for flushing a formatting buffer

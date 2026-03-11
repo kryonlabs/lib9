@@ -1,8 +1,10 @@
 #include "lib9.h"
+#include "fcall.h"
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <pwd.h>
 #include <grp.h>
+#include <stdlib.h>
 
 static char nullstring[] = "";
 static char Enovmem[] = "out of memory";

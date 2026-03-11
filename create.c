@@ -1,6 +1,15 @@
 #include "lib9.h"
+#include "fcall.h"
 #include <sys/types.h>
 #include <fcntl.h>
+#include <sys/stat.h>
+
+#ifdef create
+#undef create
+#endif
+#ifdef open
+#undef open
+#endif
 
 int
 create(char *f, int mode, int perm)

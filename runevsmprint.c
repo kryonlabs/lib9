@@ -13,6 +13,7 @@
  */
 #include "lib9.h"
 #include "fmtdef.h"
+#include <stdlib.h>
 
 static int
 fmtRuneStrFlush(Fmt *f)

@@ -2,8 +2,10 @@
 *.o
 *.o-*
 
+
 # Compiled library
 liblib9.a
+*.a
 
 # Platform-specific object files (already listed in mkfile)
 # These patterns catch all variants
@@ -14,3 +16,6 @@ getcallerpc-*.o
 dirstat-*.o
 sbrk-*.o
 isnan-*.o
+
+
+*.amd64

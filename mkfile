@@ -100,14 +100,14 @@ $LIB: $OFILES
 	ar rvc $target $OFILES
 
 %.$O: %.c
-	$CC $CFLAGS -I../include -c $stem.c -o $target
+	$CC $CFLAGS -Iinclude -c $stem.c -o $target
 
 clean:V:
 	rm -f $OFILES $LIB
 
-# Dependencies
-convD2M.$O: /home/wao/Projects/inferno/include/fcall.h
-convM2D.$O: /home/wao/Projects/inferno/include/fcall.h
-convM2S.$O: /home/wao/Projects/inferno/include/fcall.h
-convS2M.$O: /home/wao/Projects/inferno/include/fcall.h
-fcallfmt.$O: /home/wao/Projects/inferno/include/fcall.h
+# Dependencies (now using local headers)
+convD2M.$O: include/fcall.h
+convM2D.$O: include/fcall.h
+convM2S.$O: include/fcall.h
+convS2M.$O: include/fcall.h
+fcallfmt.$O: include/fcall.h

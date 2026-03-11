@@ -1,4 +1,6 @@
 #include "lib9.h"
+#include <stdlib.h>
+#include <unistd.h>
 
 void
 exits(char *s)

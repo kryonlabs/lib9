@@ -1,4 +1,5 @@
 #include "lib9.h"
+#include "fcall.h"
 
 void
 nulldir(Dir *d)
