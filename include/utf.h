@@ -1,9 +1,9 @@
 #ifndef _UTF_H_
 #define _UTF_H_ 1
+#if defined(__cplusplus)
+extern "C" { 
+#endif
 
-/* Plan 9 UTF-8 support library */
-
-/* Basic Rune type */
 typedef unsigned int Rune;	/* 32 bits */
 
 enum
@@ -15,7 +15,7 @@ enum
 	Runemax = 0x10FFFF	/* maximum rune value */
 };
 
-/* UTF function prototypes */
+/* Edit .+1,/^$/ | cfn $PLAN9/src/lib9/utf/?*.c | grep -v static |grep -v __ */
 int		chartorune(Rune *rune, char *str);
 int		fullrune(char *str, int n);
 int		isalpharune(Rune c);
@@ -29,7 +29,7 @@ Rune*		runestrcat(Rune *s1, Rune *s2);
 Rune*		runestrchr(Rune *s, Rune c);
 int		runestrcmp(Rune *s1, Rune *s2);
 Rune*		runestrcpy(Rune *s1, Rune *s2);
-Rune*		runestrdup(Rune *s);
+Rune*		runestrdup(Rune *s) ;
 Rune*		runestrecpy(Rune *s1, Rune *es1, Rune *s2);
 long		runestrlen(Rune *s);
 Rune*		runestrncat(Rune *s1, Rune *s2, long n);
@@ -48,4 +48,7 @@ char*		utfrrune(char *s, long c);
 char*		utfrune(char *s, long c);
 char*		utfutf(char *s1, char *s2);
 
+#if defined(__cplusplus)
+}
+#endif
 #endif

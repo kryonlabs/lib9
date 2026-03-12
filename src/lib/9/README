@@ -1,0 +1,85 @@
+Lib9: Plan 9 Compatibility Library
+
+A Plan 9 C library compatibility layer for TaijiOS, adapted from Inferno OS.
+Lib9 enables programs using Plan 9 conventions to compile and run on modern
+POSIX systems.
+
+OVERVIEW
+
+Lib9 provides Plan 9 C library functions for TaijiOS:
+
+    String formatting
+        print, fprint, sprint, snprint, seprint, smprint
+        fmtinstall, dostfmt, dorfmt
+
+    Utility functions
+        cleanname, argv0, exits, sysfatal
+        tokenize, getfields, strdup, strecpy
+
+    Unicode support
+        utflen, utfnlen, utfrrune, utfrune, utfecpy
+        runestrchr, runestrlen, runetype
+        runeseprint, runesmprint, runesnprint
+
+    9P protocol
+        convD2M, convM2D, convM2S, convS2M
+        fcallfmt
+
+    Directory operations
+        dirstat, dirwstat, create
+
+QUICK START
+
+Build and install:
+
+    mk
+    mk install
+
+Use in your code:
+
+    #include <u.h>
+    #include <libc.h>
+
+DOCUMENTATION
+
+See man/ directory for manual pages.
+
+COMPONENTS
+
+lib9/                - Core library source
+lib9/posix/          - POSIX-specific implementations
+include/             - Public API headers
+
+REQUIREMENTS
+
+    - Plan 9 compilers (9c/9l/9a) or GCC
+    - POSIX system (Linux, BSD, macOS)
+
+BUILD
+
+    mk                 - Build liblib9.a
+    mk install         - Install to $ROOT/lib
+    mk clean           - Clean build artifacts
+
+Binary: $ROOT/lib/liblib9.a
+
+CONFIGURATION
+
+The mkfile selects platform-specific implementations:
+POSIX (Linux, BSD, macOS)
+    errstr-posix, getuser-posix, getwd-posix
+
+EXAMPLES
+
+String formatting:
+
+    char buf[256];
+    snprint(buf, sizeof(buf), "Value: %d", 42);
+
+File operations:
+
+    Dir *d = dirstat("/path/to/file");
+    if(d) {
+        print("File size: %lld\n", d->length);
+        free(d);
+    }

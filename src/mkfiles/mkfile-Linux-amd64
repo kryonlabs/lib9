@@ -1,0 +1,28 @@
+#                                              -*-makefile-*-
+TARGMODEL=	Posix
+TARGSHTYPE=	sh
+CPUS=		amd64 arm64
+
+O=		o
+OS=		o
+
+AR=		ar
+ARFLAGS=	ruvs
+
+AS=		cc -c -m64
+ASFLAGS=
+
+CC=		cc -c -m64
+CFLAGS=		-g\
+		-O\
+		-I$ROOT/../include\
+		-DLINUX_AMD64
+
+ANSICPP=
+LD=		cc -m64
+LDFLAGS=
+
+SYSLIBS=
+
+YACC=		iyacc
+YFLAGS=		-d

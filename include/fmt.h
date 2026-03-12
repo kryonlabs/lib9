@@ -1,13 +1,26 @@
 #ifndef _FMT_H_
 #define _FMT_H_ 1
-
-/* Plan 9 formatting library */
+#if defined(__cplusplus)
+extern "C" { 
+#endif
+/*
+ * The authors of this software are Rob Pike and Ken Thompson.
+ *              Copyright (c) 2002 by Lucent Technologies.
+ * Permission to use, copy, modify, and distribute this software for any
+ * purpose without fee is hereby granted, provided that this entire notice
+ * is included in all copies of any software which is or includes a copy
+ * or modification of this software and in all copies of the supporting
+ * documentation for such software.
+ * THIS SOFTWARE IS BEING PROVIDED "AS IS", WITHOUT ANY EXPRESS OR IMPLIED
+ * WARRANTY.  IN PARTICULAR, NEITHER THE AUTHORS NOR LUCENT TECHNOLOGIES MAKE ANY
+ * REPRESENTATION OR WARRANTY OF ANY KIND CONCERNING THE MERCHANTABILITY
+ * OF THIS SOFTWARE OR ITS FITNESS FOR ANY PARTICULAR PURPOSE.
+ */
 
 #include <stdarg.h>
-#include "utf.h"
+#include <utf.h>
 
 typedef struct Fmt	Fmt;
-
 struct Fmt{
 	unsigned char	runes;		/* output buffer is runes or chars? */
 	void	*start;			/* of buffer */
@@ -25,8 +38,8 @@ struct Fmt{
 
 	/* For %'d */
 	char *thousands;	/* separator for thousands */
-
-	/*
+	
+	/* 
 	 * Each char is an integer indicating #digits before next separator. Values:
 	 *	\xFF: no more grouping (or \x7F; defined to be CHAR_MAX in POSIX)
 	 *	\x00: repeat previous indefinitely
@@ -57,12 +70,9 @@ enum{
 
 extern	int	(*fmtdoquote)(int);
 
-/* Error formatting */
-int		errfmt(Fmt *f);
-
-/* Formatting functions */
+/* Edit .+1,/^$/ | cfn $PLAN9/src/lib9/fmt/?*.c | grep -v static |grep -v __ */
 int		dofmt(Fmt *f, char *fmt);
-int		dorfmt(Fmt *f, Rune *fmt);
+int		dorfmt(Fmt *f, const Rune *fmt);
 double		fmtcharstod(int(*f)(void*), void *vp);
 int		fmtfdflush(Fmt *f);
 int		fmtfdinit(Fmt *f, int fd, char *buf, int size);
@@ -100,4 +110,7 @@ char*		vseprint(char *buf, char *e, char *fmt, va_list args);
 char*		vsmprint(char *fmt, va_list args);
 int		vsnprint(char *buf, int len, char *fmt, va_list args);
 
+#if defined(__cplusplus)
+}
+#endif
 #endif

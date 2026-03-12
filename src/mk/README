@@ -1,0 +1,76 @@
+Mk: Plan 9 Build Tool
+
+A Unix port of mk, the Plan 9 build tool originally done for the Inferno
+operating system.
+
+OVERVIEW
+
+Mk is a replacement for make that follows Plan 9 conventions. It provides
+a simple, powerful build system with features like:
+
+    Dependency Graph    - Automatic dependency resolution
+    Plan 9 Syntax       - Clean, consistent mkfile format
+    Pattern Rules       - Generic build patterns
+    Virtual Targets     - Phony targets and rules
+
+This version was repackaged by Russ Cox as a standalone Unix program.
+
+QUICK START
+
+Build:
+
+    make
+
+Install:
+
+    make install
+
+Use mkfiles:
+
+    mk
+    mk all
+    mk clean
+
+DOCUMENTATION
+
+See mk(1) manual page for complete reference.
+
+COMPONENTS
+
+src/                - Mk source code
+mkfile              - Build file for mk itself
+
+REQUIREMENTS
+
+    - C compiler (GCC, Clang)
+    - POSIX system (Linux, BSD, macOS)
+
+BUILD
+
+    make               - Build mk binary
+    make install       - Install to /usr/local/bin
+    make clean         - Clean build artifacts
+
+Binary: mk
+
+CONFIGURATION
+
+Mk reads mkfiles in the current directory. Special variables:
+
+    MKFLAGS             - Flags passed to recursive mk invocations
+    MK                  - Path to mk binary
+
+EXAMPLES
+
+Simple mkfile:
+
+    </$objtype/mkfile
+    TARG=myprogram
+    OFILES=main.o util.o
+
+    </sys/src/cmd/mkone
+
+Clean target:
+
+    clean:
+        rm -f *.[$OS] [$OS].out $TARG
