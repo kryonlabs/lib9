@@ -2,7 +2,8 @@
 
 #define UVLONG_MAX	((uvlong)1<<63)
 
-uvlong
+/* Use unsigned long long to match glibc's strtoull signature */
+unsigned long long
 strtoull(const char *nptr, char **endptr, int base)
 {
 	const char *p;

@@ -88,7 +88,13 @@ POSIX=\
 	isnan-posix.$O\
 	mallocz.$O\
 
-OFILES=$COMMON $CORE $POSIX
+# Time functions
+TIME=\
+	tz.$O\
+	tm.$O\
+	tmfmt.$O\
+
+OFILES=$COMMON $CORE $POSIX $TIME
 
 all:V: $LIB
 

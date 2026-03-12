@@ -66,6 +66,7 @@
 /* STATFIXLEN includes leading 16-bit count */
 /* The count, however, excludes itself; total size is BIT16SZ+count */
 #define STATFIXLEN (BIT16SZ + QIDSZ + 5*BIT16SZ + 4*BIT32SZ + 1*BIT64SZ)
+#define OREAD 0
 #define OWRITE 1
 #define ORDWR 2
 #define OEXEC 3

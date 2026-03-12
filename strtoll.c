@@ -1,6 +1,7 @@
 #include "lib9.h"
 
-vlong
+/* Use long long to match glibc's strtoll signature */
+long long
 strtoll(const char *nptr, char **endptr, int base)
 {
 	const char *p;

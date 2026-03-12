@@ -5,6 +5,7 @@
 #include <stddef.h>
 #include <stdarg.h>
 #include <string.h>
+#include <stdlib.h>
 
 /* Basic types */
 typedef unsigned char uchar;
@@ -19,6 +20,7 @@ typedef uint64_t uvlong;
 
 /* Utility macros */
 #define USED(x) ((void)(x))  /* Mark variable as used to suppress warnings */
+#define nelem(x) (sizeof(x)/sizeof((x)[0]))  /* Number of elements in array */
 
 /* Endianness macros - for direct buffer access */
 #define GBIT8(p) (*(uint8_t*)(p))
@@ -41,6 +43,28 @@ typedef uint64_t uvlong;
 /* Error buffer size */
 #define ERRMAX 128
 
+/* Timezone structure */
+typedef struct Tzone Tzone;
+struct Tzone {
+    char *tzname;      /* Timezone name */
+    int tzoff;         /* Offset from UTC in seconds */
+};
+
+/* Time structure */
+typedef struct Tm Tm;
+struct Tm {
+    int sec;           /* Seconds */
+    int min;           /* Minutes */
+    int hour;          /* Hours */
+    int mday;          /* Day of month */
+    int mon;           /* Month */
+    int year;          /* Year */
+    int wday;          /* Day of week */
+    int yday;          /* Day of year */
+    char zone[16];     /* Timezone name */
+    int tzoff;         /* Timezone offset */
+};
+
 /* Global variables */
 extern char *argv0;  /* Program name */
 
@@ -50,6 +74,7 @@ int errstr(char *buf, uint n);
 void werrstr(char *fmt, ...);
 
 /* Process exit */
+void sysfatal(char *fmt, ...);
 void exits(char*);
 
 /* String functions - strdup provided by plan9port, others we implement */
@@ -57,8 +82,18 @@ char* strecpy(char*, char*, char*);
 char* cleanname(char*);
 long readn(int, void*, long);
 int tokenize(char*, char**, int);
+int cistrcmp(char*, char*);
+int cistrncmp(char*, char*, int);
+char* cistrstr(char*, char*);
 
 /* Include formatting support (provides print, snprint, etc.) */
 #include "fmt.h"
+
+/* Time functions */
+extern Tzone* tzload(const char*);
+extern vlong tmnorm(Tm*);
+extern char* tmfmt(Tm*, const char*);
+extern Tm* tmtime(Tm*, vlong, Tzone*);
+extern void tmfmtinstall(void);
 
 #endif
