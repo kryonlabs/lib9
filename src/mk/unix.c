@@ -5,8 +5,21 @@
 #include	<sys/stat.h>
 #include	<sys/time.h>
 
-char	*shell = "/mnt/storage/Projects/TaijiOS/Linux/amd64/bin/rc";
-char	*shellname = "rc";
+extern char *shell;
+extern char *shellname;
+
+static char rc_path[512];
+
+static void
+init_shell(void)
+{
+	char *root = getenv("ROOT");
+	if(root == nil)
+		root = "/mnt/storage/Projects/TaijiOS";
+	snprint(rc_path, sizeof(rc_path), "%s/Linux/amd64/bin/rc", root);
+	shell = rc_path;
+	shellname = "rc";
+}
 
 extern char **environ;
 
