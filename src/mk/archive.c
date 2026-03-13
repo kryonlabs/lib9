@@ -1,4 +1,6 @@
 #include	"mk.h"
+#include	<ctype.h>
+#include	<time.h>
 #if defined(__AIX__)
 #define ARMAG	"<bigaf>\n"
 #else

@@ -1,4 +1,5 @@
 #include	"mk.h"
+#include	<time.h>
 
 /* table-driven version in bootes dump of 12/31/96 */
 

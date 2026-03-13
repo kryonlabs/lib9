@@ -3,6 +3,11 @@
 #include "exec.h"
 #include "io.h"
 #include "fns.h"
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <unistd.h>
 /*
  * Start executing the given code at the given pc with the given redirection
  */

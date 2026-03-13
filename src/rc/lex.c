@@ -22,7 +22,6 @@ idchr(int c)
 	return c>' ' && !strchr("!\"#$%&'()+,-./:;<=>?@[\\]^`{|}~", c);
 }
 int future = EOF;
-int doprompt = 1;
 int inquote;
 int incomm;
 /*
@@ -186,7 +185,6 @@ addutf(char *p, int c)
 }
 
 int lastdol;	/* was the last token read '$' or '$#' or '"'? */
-int lastword;	/* was the last token read a word or compound word terminator? */
 
 int
 yylex(void)

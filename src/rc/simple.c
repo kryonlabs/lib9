@@ -6,6 +6,8 @@
 #include "exec.h"
 #include "io.h"
 #include "fns.h"
+#include <fcntl.h>
+#include <sys/stat.h>
 /*
  * Search through the following code to see if we're just going to exit.
  */

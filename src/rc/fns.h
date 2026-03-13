@@ -12,6 +12,7 @@ int	Globsize(char*);
 int	Isatty(int);
 void	Memcpy(void*, void*, long);
 void	Noerror(void);
+int	octal(char*);
 int	Opendir(char*);
 long	Read(int, void*, long);
 int	Readdir(int, void*, int);

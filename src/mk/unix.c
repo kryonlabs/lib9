@@ -5,8 +5,8 @@
 #include	<sys/stat.h>
 #include	<sys/time.h>
 
-char	*shell = "/bin/sh";
-char	*shellname = "sh";
+char	*shell = "/mnt/storage/Projects/TaijiOS/Linux/amd64/bin/rc";
+char	*shellname = "rc";
 
 extern char **environ;
 

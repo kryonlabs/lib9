@@ -43,6 +43,15 @@ typedef uint64_t uvlong;
 /* Error buffer size */
 #define ERRMAX 128
 
+/* Open constants (Plan 9 compatibility) */
+#define OREAD 0
+#define OWRITE 1
+#define ORDWR 2
+#define OEXEC 3
+#define OTRUNC 16
+#define OCEXEC O_CLOEXEC  /* Close on exec */
+#define ORCLOSE O_CLOEXEC /* Remove on close */
+
 /* Timezone structure */
 typedef struct Tzone Tzone;
 struct Tzone {

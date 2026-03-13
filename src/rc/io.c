@@ -2,6 +2,8 @@
 #include "exec.h"
 #include "io.h"
 #include "fns.h"
+#include <assert.h>
+#include <unistd.h>
 
 enum { Stralloc = 100, };
 
@@ -117,6 +119,13 @@ pquo(io *f, char *s)
 			pfmt(f, "''");
 		else pchr(f, *s);
 	pchr(f, '\'');
+}
+
+/* Stub for Plan 9 compatibility */
+static int
+needsrcquote(int c)
+{
+	return 0;
 }
 
 void

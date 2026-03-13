@@ -8,11 +8,13 @@
 #include "exec.h"
 #include "getflags.h"
 #include "fns.h"
+#include <sys/wait.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
 
 #include <errno.h>
-
-char *Rcmain = "/usr/lib/rcmain";
-char *Fdprefix = "/dev/fd/";
+#include <stdio.h>
 
 void execfinit(void);
 
@@ -321,8 +323,8 @@ Bad:
 
 #define	NDIR	14		/* should get this from param.h */
 
-Globsize(p)
-register char *p;
+int
+Globsize(char *p)
 {
 	int isglob = 0, globlen = NDIR+1;
 	for(;*p;p++){
@@ -345,8 +347,8 @@ register char *p;
 
 DIR *dirlist[NDIRLIST];
 
-Opendir(name)
-char *name;
+int
+Opendir(char *name)
 {
 	DIR **dp;
 	for(dp = dirlist;dp!=&dirlist[NDIRLIST];dp++)
@@ -692,7 +694,14 @@ pathinit(void)
 
     s = getenv("RCMAIN");
     if (s != nil) {
-      Rcmain = s;
+      Rcmain = strdup(s);
+    } else {
+      s = getenv("ROOT");
+      if (s != nil) {
+        static char rcmain_path[512];
+        snprintf(rcmain_path, sizeof(rcmain_path), "%s/Linux/amd64/lib/rcmain", s);
+        Rcmain = rcmain_path;
+      }
     }
 }
 
