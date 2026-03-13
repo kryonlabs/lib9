@@ -40,6 +40,7 @@ main(int argc, char **argv)
 	 */
 
 	Binit(&bout, 1, OWRITE);
+	initshell();
 	buf = newbuf();
 	whatif = 0;
 	USED(argc);

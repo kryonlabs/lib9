@@ -181,7 +181,7 @@ nproc(void)
 	Symtab *sym;
 	Word *w;
 
-	if(sym = symlook("NPROC", S_VAR, 0)) {
+	if((sym = symlook("NPROC", S_VAR, 0))) {
 		w = sym->u.ptr;
 		if (w && w->s && w->s[0])
 			nproclimit = atoi(w->s);

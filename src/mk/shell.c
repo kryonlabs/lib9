@@ -5,7 +5,7 @@ static Shell *shells[] = {
 	&shshell
 };
 
-Shell *shelldefault = &shshell;
+Shell *shelldefault = &rcshell;
 
 Shell *shellt;
 Word *shellcmd;
@@ -46,6 +46,10 @@ initshell(void)
 	shellcmd = stow(shelldefault->name);
 	shellt = shelldefault;
 	setvar("MKSHELL", shellcmd);
+
+	/* Initialize the shell path for Unix */
+	extern void initshellpath(void);
+	initshellpath();
 }
 
 void

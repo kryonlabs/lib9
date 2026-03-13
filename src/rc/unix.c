@@ -123,7 +123,8 @@ execfinit(void)
 int
 cmpenv(const void *aa, const void *ab)
 {
-	char **a = aa, **b = ab;
+	const char **a = (const char **)aa;
+	const char **b = (const char **)ab;
 
 	return strcmp(*a, *b);
 }

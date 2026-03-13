@@ -1,7 +1,7 @@
 # Makefile to bootstrap mk without plan9port
 
 CC = gcc
-ROOT = $(shell pwd)/../../..
+ROOT ?= $(shell pwd)/../../..
 PREFIX = $(ROOT)/Linux/amd64
 
 # Include paths

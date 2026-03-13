@@ -14,7 +14,7 @@ addrule(char *head, Word *tail, char *body, Word *ahead, int attr, int hline, ch
 
 	r = 0;
 	reuse = 0;
-	if(sym = symlook(head, S_TARGET, 0)){
+	if((sym = symlook(head, S_TARGET, 0))){
 		for(r = sym->u.ptr; r; r = r->chain)
 			if(rcmp(r, head, tail) == 0){
 				reuse = 1;

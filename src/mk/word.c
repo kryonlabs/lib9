@@ -78,7 +78,7 @@ delword(Word *w)
 {
 	Word *v;
 
-	while(v = w){
+	while((v = w)){
 		w = w->next;
 		if(v->s)
 			free(v->s);

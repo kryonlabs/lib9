@@ -5,13 +5,13 @@
 #include	<sys/stat.h>
 #include	<sys/time.h>
 
-extern char *shell;
-extern char *shellname;
+char *shell;
+char *shellname;
 
 static char rc_path[512];
 
-static void
-init_shell(void)
+void
+initshellpath(void)
 {
 	char *root = getenv("ROOT");
 	if(root == nil)
@@ -70,12 +70,21 @@ exportenv(Envy *e, Shell *sh)
 	char **p;
 	Envy *e1;
 	static char buf[16384];
+	extern char **environ;
 
 	n = 0;
 	for(e1 = e; e1->name; e1++)
 		n++;
-	p = Malloc((n+1)*sizeof(char*));
+	p = Malloc((n+2)*sizeof(char*));  /* +1 for ROOT, +1 for null terminator */
 	w = 0;
+
+	/* Preserve ROOT from parent environment */
+	char *root = getenv("ROOT");
+	if(root != nil) {
+		snprint(buf, sizeof buf, "ROOT=%s", root);
+		p[w++] = strdup(buf);
+	}
+
 	for(; e->name; e++) {
 		if(sh == &rcshell && (e->values == 0 || e->values->s == 0 || e->values->s[0] == 0))
 			continue; /* do not write empty string for empty list */

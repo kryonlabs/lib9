@@ -21,7 +21,7 @@ match(char *name, char *template, char *stem, Shell *sh)
 		return 0;
 	if (strcmp(template+1, name+n))
 		return 0;
-	strncpy(stem, name, n);
+	memcpy(stem, name, n);
 	stem[n] = 0;
 	if(*template == '&')
 		return !sh->charin(stem, "./");
